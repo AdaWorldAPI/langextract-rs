@@ -1,0 +1,26 @@
+[package]
+name = "langextract-rs"
+version = "0.1.0"
+edition = "2021"
+description = "High-performance structured extraction via Grammar Triangle + SPO Crystal resonance"
+license = "Apache-2.0"
+repository = "https://github.com/AdaWorldAPI/langextract-rs"
+keywords = ["extraction", "nlp", "vsa", "resonance", "langextract"]
+categories = ["text-processing", "science"]
+
+[features]
+default = []
+llm = ["reqwest", "serde_json"]  # Enable LLM synthesis
+simd = []                        # SIMD acceleration
+
+[dependencies]
+# Core (always)
+ladybug = { git = "https://github.com/AdaWorldAPI/ladybug-rs", features = ["codebook", "spo"] }
+
+# Optional LLM support
+reqwest = { version = "0.11", features = ["json"], optional = true }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0", optional = true }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full"] }
